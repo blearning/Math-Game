@@ -10,7 +10,7 @@
 @player_name_isset = 0
 @player_turn = 1
 @answer = 0
-@round = 0
+@round = 00
 
 #operations used in questions
 @operations = ['+','-','*']
