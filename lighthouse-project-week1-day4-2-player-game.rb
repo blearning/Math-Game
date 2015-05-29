@@ -1,14 +1,20 @@
-@player_one_name
+@player_one_name = ''
 @player_one_lives = 3
 @player_one_score = 0
 
-@player_two_name
+@player_two_name = ''
 @player_two_lives = 3
 @player_two_score = 0
 
-@player_turn = 2
+@player_turn = 1
 @answer = 0
 @round = 1
+
+#reset_scores
+def reset_scores
+  @player_one_lives = 3
+  @player_two_lives = 3
+end
 
 #player_scores
 def player_scores_add_1(points)
@@ -17,7 +23,7 @@ def player_scores_add_1(points)
   else
     @player_two_score += 1
   end
-  puts "Scores: Player 1( \"#{@player_one_score}\" ), Player 2( \"#{@player_two_score}\" )"
+  puts "Scores:\n#{@player_one_name}( \"#{@player_one_score}\" )\n#{@player_two_name}( \"#{@player_two_score}\" )"
 end
 
 #lives_manager
@@ -27,21 +33,25 @@ def lives_manager
   else
     @player_two_lives -= 1
   end
-  puts "Lives: Player 1 lives left( \"#{@player_one_lives}\" ), Player 2 lives left( \"#{@player_two_lives}\" )"
+  puts "Lives:\n#{@player_one_name}( \"#{@player_one_lives}\" )\n#{@player_two_name}( \"#{@player_two_lives}\" )"
 end
 
 #generate_question
 def generate_question
   first_random_number = Random.new.rand(1..20) 
   second_random_number = Random.new.rand(1..20) 
-  print "(Round #{@round}) Player #{@player_turn}'s Turn: "
+  print "(Round #{@round}) its "
+  if @player_turn == 1
+    print "#{@player_one_name}'s Turn: " 
+  else
+    print "#{@player_two_name}'s Turn: "
+  end
   print "#{first_random_number} + #{second_random_number} = #{first_random_number + second_random_number}\n"
   @answer = first_random_number + second_random_number
 end
 
 #verify_answer
 def verify_answer(answer)
-  puts "What is your answer?"
   if @answer == answer.to_i
     #playerscore
     puts "you win"
@@ -58,18 +68,24 @@ end
 def next_player
   if @player_turn == 1
     @player_turn = 2
-  elsif 
+  else
     @player_turn = 1
   end
 end
 
 
-#prompt_player_for_answer
-
 #promt_player_for_names
+def prompt_player_names
+  print "Player 1 Name: "
+  @player_one_name = gets.chomp
+  print "Player 2 Name: "
+  @player_two_name = gets.chomp
+
+end
 
 #start_game
 def new_round
+  prompt_player_names
   generate_question
   verify_answer(gets.chomp)
   next_player
