@@ -12,6 +12,9 @@
 @answer = 0
 @round = 0
 
+#operations used in questions
+@operations = ['+','-','*']
+
 #reset_scores
 def reset_score_and_round
   @player_one_lives = 3
@@ -57,8 +60,24 @@ def check_life
   end
 end
 
+#operation_generator
+def operation_generator
+  length_of_array = @operations.length
+  return @operations[Random.new.rand(0..length_of_array-1)]
+end
+
+def operation_magic(operator, num1, num2)
+  operator = operator
+  case operator
+  when "-" then num1 - num2
+  when "+" then num1 + num2
+  when "*" then num1 * num2
+  end
+end
+
 #generate_question
 def generate_question
+  randomized_operation = operation_generator
   first_random_number = Random.new.rand(1..20) 
   second_random_number = Random.new.rand(1..20) 
   print "(Round #{@round}) its "
@@ -67,8 +86,8 @@ def generate_question
   else
     print "#{@player_two_name}'s Turn: "
   end
-  print "#{first_random_number} + #{second_random_number} = ?\n"
-  @answer = first_random_number + second_random_number
+  print "#{first_random_number} #{randomized_operation} #{second_random_number} = ?\n"
+  @answer = operation_magic(randomized_operation, first_random_number, second_random_number) 
 end
 
 #verify_answer
