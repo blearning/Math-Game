@@ -73,19 +73,19 @@ class Game
   def verify_answer(answer)
     if @answer == answer.to_i
       #playerscore
-      puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n~~~~~~~~~~~CORRECT ANSWER~~~~~~~~~~~\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+      puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n~~~~~~~~~~~CORRECT ANSWER~~~~~~~~~~~\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~".green
       player_scores_add_1(1)
-      puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n"
+      puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n".green
     else
       #Sorry Message
-      puts "~~~~~~~~~~~~WRONG ANSWER~~~~~~~~~~~~"
+      puts "~~~~~~~~~~~~WRONG ANSWER~~~~~~~~~~~~".red
       lives_manager
-      puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n"
+      puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n".red
     end
   end
 
   def message_whos_turn?
-    print "\n****************************\n******** (Round #{@round}) *********\n"
+    print "\n****************************\n******** (Round #{@round}) *********\n".blue
     if @player_turn == 1
       
       print "#{@player_1.name}'s Turn: "
@@ -111,9 +111,9 @@ class Game
   #choose_winner
   def choose_winner
     if @player_1.lives < @player_2.lives
-      puts "#{@player_1.name} is the WINNER!"
+      puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n#{@player_1.name} is the WINNER!\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~".green
     else
-      puts "#{@player_2.name} is the WINNER!"
+      puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n#{@player_2.name} is the WINNER!\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~".green
     end
   end
 
@@ -130,7 +130,7 @@ class Game
 
     case command
       when "Y", "y" 
-      puts "~~~~~~~~~~~~\nNew Game!\nIt's #{@player_1.name} vs #{@player_2.name}\n~~~~~~~~~~~~\n"
+      puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\nNew Game!\nIt's #{@player_1.name} vs #{@player_2.name}\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~".green
       understandable_user_prompt = false
       reset_score_and_round
       start
