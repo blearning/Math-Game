@@ -130,7 +130,7 @@ class Game
 
     case command
       when "Y", "y" 
-      puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\nNew Game!\nIt's #{@player_1.name} vs #{@player_2.name}\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~".green
+      puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\nNew Game!\nIt's #{@player_1.name} vs #{@player_2.name}\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~".green
       understandable_user_prompt = false
       reset_score_and_round
       start
