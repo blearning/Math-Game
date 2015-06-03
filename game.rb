@@ -1,3 +1,5 @@
+require './exceptions'
+
 class Game
 
   def initialize()
@@ -66,11 +68,24 @@ class Game
     else
       @player_2.lives -= 1
     end
+    begin 
+      raise PlayerDeadError, "Your Out of Lives" if @player_1.lives == 0 || @player_2.lives == 0
+    rescue
+      puts "\n\n\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\nSystem Message: One of the players are out of lives!\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n\n".red
+    end
     puts "Lives:\n#{@player_1.name}( \"#{@player_1.lives}\" )\n#{@player_2.name}( \"#{@player_2.lives}\" )"
   end
 
-  #verify_answer
+  #verify_answer  
   def verify_answer(answer)
+    
+    #Exception
+    begin 
+      raise InvalidGuessError, "Answers are numeric, not alphabetic!" if answer.to_i == 0 
+    rescue
+      puts "\n\n\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\nSystem Message: Answers should be \"numeric\"\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n\n".red
+    end
+
     if @answer == answer.to_i
       #playerscore
       puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n~~~~~~~~~~~CORRECT ANSWER~~~~~~~~~~~\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~".green
