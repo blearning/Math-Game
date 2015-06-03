@@ -1,2 +1,4 @@
-# lighthouse-project-week1-day4-2-player-game
-This is week 1, day 2 of lighthouse game project 
+# Lighthouse Labs Week 1, Day 5 Project
+Take your lighthouse 2 player game (none object oriented) in Day 4's assignments and make it OBJECT ORIENTED!
+
+Use Classes!
